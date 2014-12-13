@@ -1,5 +1,5 @@
 #
-# Makefile for Sudokosolver
+# Makefile for Sudokusolver
 
 # Diagnosmeddelanden från kompilatorn (g++) filtreras av gccfilter.
 CCC = g++
@@ -16,18 +16,18 @@ LDFLAGS  += -L/sw/gcc-$(GCC4_V)/lib -static-libstdc++
 
 # Objektkodsmoduler som ingår i den kompletta kalkylatorn.
 
-OBJECTS = main.o board.o
+OBJECTS = main.o SudokuBoard.o
 
 # Huvudmål - skapas med kommandot 'make' eller 'make kalkylator'.
 Sudokosolver: $(OBJECTS) makefile
 	$(CCC) $(CCFLAGS) $(LDFLAGS) -o Sudokosolver $(OBJECTS) ${SDL}
 
 # Delmål (flaggan -c avbryter innan länkning, objektkodsfil erhålls)
-main.o: main.cc
-	$(CCC) $(CCFLAGS) -c main.cc
+main.o: main.cpp
+	$(CCC) $(CCFLAGS) -c main.cpp
 
-square.o: board.h board.cc
-	$(CCC) $(CCFLAGS) -c board.cc
+Sudoku.o: SudokuBoard.h SudokuBoard.cc
+	$(CCC) $(CCFLAGS) -c SudokuBoard.cc
 
 
 # 'make clean' tar bort objektkodsfiler och 'core' (minnesdump).
